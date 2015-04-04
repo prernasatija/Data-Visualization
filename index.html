@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body {
+			background-color: #F2F2F2;
+		}			
+	</style>
+
+	<link rel="stylesheet" href="css/chart.css" />
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/tab.css" />
+    <link rel="stylesheet" href="css/d3.slider.css" />
+
+    
+	<script src="lib/jquery-1.10.2.js"></script>
+  	<script src="lib/jquery-ui.js"></script>
+
+  	<script type="text/javascript" src="data/matches.json"></script>
+	<script type="text/javascript" src="data/countriesBest.js"></script>
+	<script type="text/javascript" src="js/roundMatchesData.js"></script>
+
+	<script type="text/javascript" src="js/ammap.js"></script>
+	<script type="text/javascript" src="js/worldLow.js"></script>
+	<script type="text/javascript" src="js/none.js"></script>
+
+	<script src="lib/d3.v3.min.js"></script>
+    <script src="lib/topojson.v1.min.js"></script>
+	
+  	<script type="text/javascript" src="js/chart.js"></script>
+  	<script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/light.js"></script>
+    <title>Tennis Round Viz</title>
+</head>
+
+<body >
+	&nbsp;
+	<div class="tab-box"> 
+    	<a href="javascript:void(0);" class="tabLink activeLink" id="tab-1">First</a> 
+    	<a href="avascript:void(0);" class="tabLink " id="tab-2">Second</a> 
+    	<a href="javascript:void(0);" class="tabLink " id="tab-3">Third</a>
+    	<a href="avascript:void(0);" class="tabLink " id="tab-4">Fourth</a> 
+    	<a href="javascript:void(0);" class="tabLink " id="tab-5">Quarter Final</a>
+    	<a href="javascript:void(0);" class="tabLink " id="tab-6">Semi Final</a>
+    	<a href="javascript:void(0);" class="tabLink " id="tab-7">Final</a> 
+  	</div>
+  
+  	<div class="tabcontent paddingAll" id="tab-1-1"> </div>
+  	<div class="tabcontent paddingAll hide" id="tab-2-1"> </div> 
+  	<div class="tabcontent paddingAll hide" id="tab-3-1"></div>
+  	<div class="tabcontent paddingAll hide" id="tab-4-1"> </div> 
+  	<div class="tabcontent paddingAll hide" id="tab-5-1"></div>
+
+  	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".tabLink").each(function(){
+				$(this).click(function(){
+					tabId = $(this).attr('id');
+					if(tabId == "tab-1") {
+						roundIndex = 6;
+					}
+					else if (tabId == "tab-2") {
+						roundIndex = 5;
+					}
+					else if (tabId == "tab-3") {
+						roundIndex = 4;
+					}
+					else if (tabId == "tab-4") {
+						roundIndex = 3;
+					}
+					else if (tabId == "tab-5") {
+						roundIndex = 2;
+					}
+					else if (tabId == "tab-6") {
+						roundIndex = 1;
+					}
+					else {
+						roundIndex = 0;
+					}
+					$(".tabLink").removeClass("activeLink");
+					$(this).addClass("activeLink");
+					$(".tabcontent").addClass("hide");
+					$("#"+tabId+"-1").removeClass("hide")
+					updateMap(); 
+					return false;	  
+				});
+			});  
+		});
+	</script>
+
+	<div id="chartdiv"></div>
+
+	<div id="container" >
+	    <div id="slider-container">
+	      <div id="slider-div"></div>
+	      <div id="slider-probe">
+	        <p></p>
+	        <div></div>
+	      </div>
+	    </div>
+	    <div id="play"></div>
+	</div>
+
+    <script src="lib/d3.slider.js"></script>
+  	<script src="js/main.js"></script>
+
+</body>
+
+</html>
